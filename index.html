@@ -53,25 +53,25 @@
             opacity: 1;
             text-align: center;
             line-height: 1;
-            font-size: clamp(120px, 18vw, 400px); 
             
-            /* 14 specific layers of contrasting text-contouring */
-            --base-shadow: 
-                0 0 0 #fff,
-                2px 2px 0px #ff1493, -2px -2px 0px #ff1493, 2px -2px 0px #ff1493, -2px 2px 0px #ff1493,
-                4px 4px 0px #000, -4px -4px 0px #000, 4px -4px 0px #000, -4px 4px 0px #000,
+            /* Made the scale smaller: now min 80px, max 250px */
+            font-size: clamp(80px, 12vw, 250px); 
+            
+            /* Exactly 14 contours - all identical solid pink (#ff69b4) */
+            text-shadow: 
+                2px 2px 0px #ff69b4, -2px -2px 0px #ff69b4, 2px -2px 0px #ff69b4, -2px 2px 0px #ff69b4,
+                4px 4px 0px #ff69b4, -4px -4px 0px #ff69b4, 4px -4px 0px #ff69b4, -4px 4px 0px #ff69b4,
                 6px 6px 0px #ff69b4, -6px -6px 0px #ff69b4, 6px -6px 0px #ff69b4, -6px 6px 0px #ff69b4,
-                8px 8px 0px #000, -8px -8px 0px #000, 8px -8px 0px #000, -8px 8px 0px #000,
-                10px 10px 0px #ff1493, -10px -10px 0px #ff1493, 10px -10px 0px #ff1493, -10px 10px 0px #ff1493,
-                12px 12px 0px #000, -12px -12px 0px #000, 12px -12px 0px #000, -12px 12px 0px #000,
+                8px 8px 0px #ff69b4, -8px -8px 0px #ff69b4, 8px -8px 0px #ff69b4, -8px 8px 0px #ff69b4,
+                10px 10px 0px #ff69b4, -10px -10px 0px #ff69b4, 10px -10px 0px #ff69b4, -10px 10px 0px #ff69b4,
+                12px 12px 0px #ff69b4, -12px -12px 0px #ff69b4, 12px -12px 0px #ff69b4, -12px 12px 0px #ff69b4,
                 14px 14px 0px #ff69b4, -14px -14px 0px #ff69b4, 14px -14px 0px #ff69b4, -14px 14px 0px #ff69b4;
 
-            text-shadow: var(--base-shadow);
             transform: translate(-50%, -50%) scale(1);
-            will-change: transform, text-shadow; /* HW optimization for responsive canvas */
+            will-change: transform, text-shadow;
         }
 
-        /* Combined micro-interaction animation */
+        /* Fixed animation logic: Instant scale up + neon burst, slow scale down */
         .pulse-animation {
             animation: instantUpSlowDown 1.3s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
         }
@@ -79,21 +79,22 @@
         @keyframes instantUpSlowDown {
             0% {
                 transform: translate(-50%, -50%) scale(1);
-                text-shadow: var(--base-shadow);
             }
             1% {
                 transform: translate(-50%, -50%) scale(1.5);
-                /* Radial neon dispersion mapped underneath text shadows */
+                /* Radial pink neon glow explodes underneath the contours instantly */
                 text-shadow: 
-                    var(--base-shadow),
-                    0 0 20px #ff1493,
-                    0 0 40px #ff69b4,
-                    0 0 80px #ff69b4,
-                    0 0 120px #ff1493;
+                    2px 2px 0px #ff69b4, -2px -2px 0px #ff69b4, 2px -2px 0px #ff69b4, -2px 2px 0px #ff69b4,
+                    4px 4px 0px #ff69b4, -4px -4px 0px #ff69b4, 4px -4px 0px #ff69b4, -4px 4px 0px #ff69b4,
+                    6px 6px 0px #ff69b4, -6px -6px 0px #ff69b4, 6px -6px 0px #ff69b4, -6px 6px 0px #ff69b4,
+                    8px 8px 0px #ff69b4, -8px -8px 0px #ff69b4, 8px -8px 0px #ff69b4, -8px 8px 0px #ff69b4,
+                    10px 10px 0px #ff69b4, -10px -10px 0px #ff69b4, 10px -10px 0px #ff69b4, -10px 10px 0px #ff69b4,
+                    12px 12px 0px #ff69b4, -12px -12px 0px #ff69b4, 12px -12px 0px #ff69b4, -12px 12px 0px #ff69b4,
+                    14px 14px 0px #ff69b4, -14px -14px 0px #ff69b4, 14px -14px 0px #ff69b4, -14px 14px 0px #ff69b4,
+                    0 0 30px #ff69b4, 0 0 60px #ff69b4, 0 0 100px #ff69b4;
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
-                text-shadow: var(--base-shadow);
             }
         }
     </style>
@@ -108,7 +109,9 @@
     <script>
         const target = document.getElementById('target67');
         const bg = document.getElementById('bg');
-      // Dynamically compute layout scale matrix to cover wide desktop viewpoints
+        const audio = document.getElementById('audio67');
+
+        // Generates matrix pattern to fill layout viewpoint
         function fillBackground() {
             const pattern = "67".repeat(4000);
             bg.textContent = pattern;
@@ -134,4 +137,3 @@
     </script>
 </body>
 </html>
-        const audio = document.getElementById('audio67');
