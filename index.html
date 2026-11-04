@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>67</title>
     
-    <!-- Link to the favicon asset -->
+    <!-- Link to the square 194x194 favicon asset -->
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Loading a beautiful, heavy, clean-cut modern font -->
@@ -60,7 +60,7 @@
             text-align: center;
             line-height: 1;
             
-            /* Perfectly scaled down size */
+            /* Clean scaled down size */
             font-size: clamp(60px, 10vw, 180px); 
             
             /* Professional thick solid outline using Sakura Pink */
@@ -97,14 +97,15 @@
     <div class="bg-overlay" id="bg"></div>
     <div class="center-text" id="target67">67</div>
 
-    <audio id="audio67" src="67.mp3" preload="auto"></audio>
+    <!-- Linked directly to your uploaded faaah.mp3 audio file -->
+    <audio id="audio67" src="faaah.mp3" preload="auto"></audio>
 
     <script>
         const target = document.getElementById('target67');
         const bg = document.getElementById('bg');
         const audio = document.getElementById('audio67');
 
-        // Generates matrix pattern to fill layout viewpoint cleanly
+        /* Generates matrix pattern to fill layout viewpoint cleanly */
         function fillBackground() {
             const pattern = "67".repeat(5000);
             bg.textContent = pattern;
@@ -112,16 +113,17 @@
         
         fillBackground();
 
-        // Native pointer interactions
+        /* Native pointer interactions */
         target.addEventListener('click', (e) => {
-            e.stopPropagation();
-            // Immediate media reset to enable fast playback triggers
+            e.stopPropagation(); 
+            
+            /* Immediate media reset to enable fast playback triggers */
             audio.currentTime = 0;
-            audio.play().catch(err => console.log("Media resource 67.mp3 not found or interaction blocked.", err));
+            audio.play().catch(err => console.log("Media resource faaah.mp3 not found or interaction blocked.", err));
 
-            // Class cycling mechanism to override transition cycles cleanly
+            /* Class cycling mechanism to override transition cycles cleanly */
             target.classList.remove('pulse-animation');
-            void target.offsetWidth; // Trigger DOM reflow to restart animation instantly
+            void target.offsetWidth; /* Trigger DOM reflow to restart animation instantly */
             target.classList.add('pulse-animation');
         });
 
@@ -129,4 +131,3 @@
     </script>
 </body>
 </html>
-            e.stopPropagation();
