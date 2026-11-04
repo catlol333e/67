@@ -8,6 +8,11 @@
     <!-- Link to the favicon asset -->
     <link rel="icon" type="image/png" href="favicon.png">
 
+    <!-- Loading a beautiful, heavy, clean-cut modern font -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Montserrat:wght=900&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -21,11 +26,11 @@
             /* Semi-transparent Light Cyan layer over solid black baseline */
             background: linear-gradient(rgba(224, 255, 255, 0.35), rgba(224, 255, 255, 0.35)), #000;
             overflow: hidden;
-            font-family: 'Arial Black', Impact, sans-serif;
+            font-family: 'Montserrat', 'Arial Black', sans-serif;
             position: relative;
         }
 
-        /* Repeating background pattern setup */
+        /* Repeating background pattern setup using Sakura Pink */
         .bg-overlay {
             position: absolute;
             top: 0;
@@ -33,13 +38,14 @@
             width: 100%;
             height: 100%;
             opacity: 0.35;
-            color: #ff69b4;
-            font-size: clamp(14px, 1.5vw, 24px);
-            line-height: 1.2;
+            color: #ffb7c5; /* Sakura Pink */
+            font-size: clamp(12px, 1.2vw, 20px);
+            line-height: 1.1;
             word-break: break-all;
             user-select: none;
             pointer-events: none; /* Clicks fall through to interactive element */
             padding: 10px;
+            letter-spacing: 1px;
         }
 
         /* Centered interactive 67 element */
@@ -49,29 +55,23 @@
             left: 50%;
             cursor: pointer;
             user-select: none;
-            color: #ff69b4;
+            color: #ffb7c5; /* Sakura Pink */
             opacity: 1;
             text-align: center;
             line-height: 1;
             
-            /* Made the scale smaller: now min 80px, max 250px */
-            font-size: clamp(80px, 12vw, 250px); 
+            /* Perfectly scaled down size */
+            font-size: clamp(60px, 10vw, 180px); 
             
-            /* Exactly 14 contours - all identical solid pink (#ff69b4) */
-            text-shadow: 
-                2px 2px 0px #ff69b4, -2px -2px 0px #ff69b4, 2px -2px 0px #ff69b4, -2px 2px 0px #ff69b4,
-                4px 4px 0px #ff69b4, -4px -4px 0px #ff69b4, 4px -4px 0px #ff69b4, -4px 4px 0px #ff69b4,
-                6px 6px 0px #ff69b4, -6px -6px 0px #ff69b4, 6px -6px 0px #ff69b4, -6px 6px 0px #ff69b4,
-                8px 8px 0px #ff69b4, -8px -8px 0px #ff69b4, 8px -8px 0px #ff69b4, -8px 8px 0px #ff69b4,
-                10px 10px 0px #ff69b4, -10px -10px 0px #ff69b4, 10px -10px 0px #ff69b4, -10px 10px 0px #ff69b4,
-                12px 12px 0px #ff69b4, -12px -12px 0px #ff69b4, 12px -12px 0px #ff69b4, -12px 12px 0px #ff69b4,
-                14px 14px 0px #ff69b4, -14px -14px 0px #ff69b4, 14px -14px 0px #ff69b4, -14px 14px 0px #ff69b4;
-
+            /* Professional thick solid outline using Sakura Pink */
+            -webkit-text-stroke: 14px #ffb7c5;
+            paint-order: stroke fill;
+            
             transform: translate(-50%, -50%) scale(1);
-            will-change: transform, text-shadow;
+            will-change: transform;
         }
 
-        /* Fixed animation logic: Instant scale up + neon burst, slow scale down */
+        /* Animation logic: Instant scale up, smooth slow scale down */
         .pulse-animation {
             animation: instantUpSlowDown 1.3s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
         }
@@ -79,22 +79,15 @@
         @keyframes instantUpSlowDown {
             0% {
                 transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 0 0px rgba(255, 183, 197, 0));
             }
             1% {
-                transform: translate(-50%, -50%) scale(1.5);
-                /* Radial pink neon glow explodes underneath the contours instantly */
-                text-shadow: 
-                    2px 2px 0px #ff69b4, -2px -2px 0px #ff69b4, 2px -2px 0px #ff69b4, -2px 2px 0px #ff69b4,
-                    4px 4px 0px #ff69b4, -4px -4px 0px #ff69b4, 4px -4px 0px #ff69b4, -4px 4px 0px #ff69b4,
-                    6px 6px 0px #ff69b4, -6px -6px 0px #ff69b4, 6px -6px 0px #ff69b4, -6px 6px 0px #ff69b4,
-                    8px 8px 0px #ff69b4, -8px -8px 0px #ff69b4, 8px -8px 0px #ff69b4, -8px 8px 0px #ff69b4,
-                    10px 10px 0px #ff69b4, -10px -10px 0px #ff69b4, 10px -10px 0px #ff69b4, -10px 10px 0px #ff69b4,
-                    12px 12px 0px #ff69b4, -12px -12px 0px #ff69b4, 12px -12px 0px #ff69b4, -12px 12px 0px #ff69b4,
-                    14px 14px 0px #ff69b4, -14px -14px 0px #ff69b4, 14px -14px 0px #ff69b4, -14px 14px 0px #ff69b4,
-                    0 0 30px #ff69b4, 0 0 60px #ff69b4, 0 0 100px #ff69b4;
+                transform: translate(-50%, -50%) scale(1.5); /* Instant scale up */
+                filter: drop-shadow(0 0 25px #ffb7c5) drop-shadow(0 0 50px #ffb7c5); /* Soft Sakura neon flash */
             }
             100% {
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1); /* Slow return to normal */
+                filter: drop-shadow(0 0 0px rgba(255, 183, 197, 0));
             }
         }
     </style>
@@ -111,9 +104,9 @@
         const bg = document.getElementById('bg');
         const audio = document.getElementById('audio67');
 
-        // Generates matrix pattern to fill layout viewpoint
+        // Generates matrix pattern to fill layout viewpoint cleanly
         function fillBackground() {
-            const pattern = "67".repeat(4000);
+            const pattern = "67".repeat(5000);
             bg.textContent = pattern;
         }
         
@@ -121,15 +114,14 @@
 
         // Native pointer interactions
         target.addEventListener('click', (e) => {
-            e.stopPropagation(); 
-            
+            e.stopPropagation();
             // Immediate media reset to enable fast playback triggers
             audio.currentTime = 0;
             audio.play().catch(err => console.log("Media resource 67.mp3 not found or interaction blocked.", err));
 
-            // Class cycling mechanism to override transition cycles
+            // Class cycling mechanism to override transition cycles cleanly
             target.classList.remove('pulse-animation');
-            void target.offsetWidth; 
+            void target.offsetWidth; // Trigger DOM reflow to restart animation instantly
             target.classList.add('pulse-animation');
         });
 
@@ -137,3 +129,4 @@
     </script>
 </body>
 </html>
+            e.stopPropagation();
